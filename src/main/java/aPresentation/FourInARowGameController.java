@@ -1,11 +1,12 @@
 package aPresentation;
 
+import BusinessLogic.CirclePiece;
 import BusinessLogic.FourInARowList;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by David Stovlbaek
@@ -23,12 +24,15 @@ public class FourInARowGameController implements Initializable {
 
     private void setGridPane(FourInARowList fourInARowList) {
         gridPane.getChildren().clear();
+
+        List<List<CirclePiece>> list2 = fourInARowList.getFourInARowList();
+
         /*
         try {
             int rowCounter = 0, columnCounter = 0;
 
 
-            for (final FilePath i : list.getList()) {
+            for (final FilePath i : ) {
 
                 Button button = new Button();
 
@@ -43,8 +47,6 @@ public class FourInARowGameController implements Initializable {
                     }
                 });
 
-                File file = new File(i.getLocalPathThumbnail());
-                String localUrl = file.toURI().toURL().toString();
 
                 Image thumbnail = new Image(localUrl, false);
                 ImageView view = new ImageView(thumbnail);
@@ -62,6 +64,6 @@ public class FourInARowGameController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        */
+           */
     }
 }
