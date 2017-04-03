@@ -33,7 +33,7 @@ public class FourInARowList {
                 circlePieceList.set(circlePiece, new CirclePiece("White"));
             }
             rowCounter++;
-        };
+        }
 
         return returnFourInARowList;
     }
