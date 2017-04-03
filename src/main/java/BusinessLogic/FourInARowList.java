@@ -12,7 +12,7 @@ public class FourInARowList {
     List<List<CirclePiece>> fourInARowList = new ArrayList<>();
 
 
-    public void addColorToList
+    //public void addColorToList
 
 
 }
