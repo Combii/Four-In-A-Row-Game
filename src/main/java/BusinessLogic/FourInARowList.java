@@ -14,7 +14,7 @@ public class FourInARowList {
 
     private List<List<CirclePiece>> FourInARowList;
 
-    FourInARowList() {
+    public FourInARowList() {
         FourInARowList = createNewFourInARowList();
     }
 
