@@ -33,17 +33,19 @@ public class FourInARowGameController implements Initializable {
 
         try {
             int rowCounter = 0, columnCounter = 0;
-            //for()
+            for(List<CirclePiece> circlePieceList : fourInARowList)
 
-            for (CirclePiece circlePiece : fourInARowList.get(rowCounter)) {
+            for (CirclePiece circlePiece : circlePieceList) {
 
                 Button button = new Button();
 
                 //Handle when button is clicked on
                 //Handle when button is clicked on
+                int finalRowCounter = rowCounter;
+                int finalColumnCounter = columnCounter;
                 button.setOnAction(event -> {
-                    circlePiece.setColor(color);
-                    System.out.println(circlePiece.getColor());
+                    System.out.println("CirclePiece: " + circlePiece.getColor());
+                    System.out.println("Row: " + finalRowCounter + " Column: " + finalColumnCounter);
                 });
 
                 /*
@@ -56,7 +58,7 @@ public class FourInARowGameController implements Initializable {
                 gridPane.add(button, columnCounter, rowCounter);
 
                 columnCounter++;
-                if (columnCounter > 3) {
+                if (columnCounter >= circlePieceList.size()) {
                     columnCounter = 0;
                     rowCounter++;
                 }

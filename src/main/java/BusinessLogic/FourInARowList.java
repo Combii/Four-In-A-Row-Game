@@ -34,7 +34,7 @@ public class FourInARowList {
             List<CirclePiece> circlePieceList = returnFourInARowList.get(rowCounter);
 
             for (int circlePiece = 0; circlePiece < circlePieceList.size(); circlePiece++) {
-                circlePieceList.set(circlePiece, new CirclePiece("White"));
+                circlePieceList.set(circlePiece, new CirclePiece("Row: " + rowCounter + " Column: " + circlePiece));
             }
             rowCounter++;
         }
