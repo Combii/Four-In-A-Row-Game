@@ -9,6 +9,7 @@ public class MainTester {
         FourInARowList fourInARowList = new FourInARowList();
 
 
+
         System.out.println(fourInARowList);
     }
 }
