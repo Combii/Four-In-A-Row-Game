@@ -6,18 +6,17 @@ package BusinessLogic;
  */
 public class CirclePiece {
     private String Color;
-    private boolean isPicked;
 
-    public CirclePiece(String color, boolean isPicked) {
+    public CirclePiece(String color) {
         Color = color;
-        this.isPicked = isPicked;
     }
 
     public String getColor() {
         return Color;
     }
 
-    public boolean isPicked() {
-        return isPicked;
+    @Override
+    public String toString() {
+        return Color;
     }
 }
