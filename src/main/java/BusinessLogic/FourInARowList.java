@@ -18,9 +18,6 @@ public class FourInARowList {
         FourInARowList = createNewFourInARowList();
     }
 
-    public List<List<CirclePiece>> getFourInARowList() {
-        return FourInARowList;
-    }
 
     @SuppressWarnings("unchecked")
     private List<List<CirclePiece>> createNewFourInARowList(){
