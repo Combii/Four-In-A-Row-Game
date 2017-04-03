@@ -1,4 +1,4 @@
-package Presentation;
+package aPresentation;
 
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -19,9 +19,8 @@ public class FourInARowGameController implements Initializable {
     }
 
     private void setGridPane(String dropboxFolderPath) {
-        currentFolderOpen = dropboxFolderPath;
         gridPane.getChildren().clear();
-
+        /*
         try {
             FileStorage list = new FileStorage();
             list.downloadFilesToList(dropboxFolderPath);
@@ -63,5 +62,6 @@ public class FourInARowGameController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
     }
 }
