@@ -12,12 +12,15 @@ import java.util.List;
  */
 public class FourInARowList {
 
-    List<List<CirclePiece>> FourInARowList;
+    private List<List<CirclePiece>> FourInARowList;
 
     public FourInARowList() {
         FourInARowList = createNewFourInARowList();
     }
 
+    public List<List<CirclePiece>> getFourInARowList() {
+        return FourInARowList;
+    }
 
     @SuppressWarnings("unchecked")
     private List<List<CirclePiece>> createNewFourInARowList(){

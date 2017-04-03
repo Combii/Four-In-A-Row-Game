@@ -1,5 +1,6 @@
 package aPresentation;
 
+import BusinessLogic.FourInARowList;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 
@@ -13,18 +14,17 @@ import java.util.ResourceBundle;
 public class FourInARowGameController implements Initializable {
     public GridPane gridPane;
 
+    private FourInARowList fourInARowList;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //setGridPane("pics");
     }
 
-    private void setGridPane(String dropboxFolderPath) {
+    private void setGridPane(FourInARowList fourInARowList) {
         gridPane.getChildren().clear();
         /*
         try {
-            FileStorage list = new FileStorage();
-            list.downloadFilesToList(dropboxFolderPath);
-
             int rowCounter = 0, columnCounter = 0;
 
 

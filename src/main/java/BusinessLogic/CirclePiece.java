@@ -15,6 +15,10 @@ public class CirclePiece {
         return Color;
     }
 
+    public void setColor(String color) {
+        Color = color;
+    }
+
     @Override
     public String toString() {
         return Color;
