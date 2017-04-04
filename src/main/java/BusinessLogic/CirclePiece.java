@@ -10,20 +10,27 @@ import java.io.Serializable;
  */
 public class CirclePiece implements Serializable{
 
-    private final int x;
-    private final int y;
     private Color color;
+    private final int row;
+    private final int column;
 
+    public CirclePiece(Color color, int row, int column) {
 
-
-    public CirclePiece(int x, int y, Color color) {
-        this.x = x;
-        this.y = y;
         this.color = color;
+        this.row = row;
+        this.column = column;
     }
 
     public Color getColor() {
         return color;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
     }
 
     public void setColor(Color color) {
@@ -35,11 +42,5 @@ public class CirclePiece implements Serializable{
         return color.toString();
     }
 
-    public int getX() {
-        return x;
-    }
 
-    public int getY() {
-        return y;
-    }
 }

@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class FourInARowList {
 
-    private List<List<CirclePiece>> FourInARowList;
+    private List<List<CirclePiece>> fourInARowList;
 
     public FourInARowList() {
-        FourInARowList = createNewFourInARowList();
+        fourInARowList = createNewFourInARowList();
     }
 
     public List<List<CirclePiece>> getFourInARowList() {
-        return FourInARowList;
+        return fourInARowList;
     }
 
     @SuppressWarnings("unchecked")
@@ -35,7 +35,9 @@ public class FourInARowList {
             List<CirclePiece> circlePieceList = returnFourInARowList.get(rowCounter);
 
             for (int circlePiece = 0; circlePiece < circlePieceList.size(); circlePiece++) {
-                circlePieceList.set(circlePiece, new CirclePiece(x, y, Color.WHITE));
+
+                circlePieceList.set(circlePiece, new CirclePiece(Color.WHITE, rowCounter, circlePiece));
+
             }
             rowCounter++;
         }
@@ -43,9 +45,78 @@ public class FourInARowList {
         return returnFourInARowList;
     }
 
+    public boolean setBrick(int column, Color color){
+
+        for(int row = fourInARowList.size()-1; row >= 0; row--){
+            CirclePiece circlePiece = fourInARowList.get(row).get(column);
+
+            if(circlePiece.getColor().equals(Color.WHITE)){
+                circlePiece.setColor(color);
+                return checkIfFourInARow(row, column, color);
+            }
+        }
+        return false;
+    }
+
+    private boolean checkIfFourInARow(int row, int column, Color color){
+
+        /**
+         * Yes I know this is code smell. F it. You're Welcome to break this down to same method calling it 4 times.
+         */
+
+
+        //Check Right
+        int fourInARowCounter = 0;
+        for(int columnCounter = column; columnCounter < fourInARowList.get(row).size(); columnCounter++){
+            if(checkIfColorEqualsColorInList(row, columnCounter, color))
+                fourInARowCounter++;
+            else
+                break;
+
+            if (fourInARowCounter == 4)
+                return true;
+        }
+
+        //Check Left
+        fourInARowCounter = 0;
+        for(int columnCounter = column; columnCounter >= 0; columnCounter--){
+            if(checkIfColorEqualsColorInList(row, columnCounter, color))
+                fourInARowCounter++;
+            else
+                break;
+
+            if (fourInARowCounter == 4)
+                return true;
+        }
+
+
+        //Check Down
+        fourInARowCounter = 0;
+        for(int rowCounter = row; rowCounter < fourInARowList.size(); rowCounter++){
+            if(checkIfColorEqualsColorInList(rowCounter, column, color))
+                fourInARowCounter++;
+            else
+                break;
+
+            if (fourInARowCounter == 4)
+                return true;
+        }
+
+
+
+
+
+        return false;
+    }
+
+
+    private boolean checkIfColorEqualsColorInList(int row, int column, Color color){
+        return fourInARowList.get(row).get(column).getColor().equals(color);
+    }
+
     @Override
     public String toString() {
-        return  "FourInARowList=" + FourInARowList +
+        return  "FourInARowList=" + fourInARowList +
                 '}';
     }
 }
