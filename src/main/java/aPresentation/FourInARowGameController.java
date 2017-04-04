@@ -40,7 +40,7 @@ public class FourInARowGameController implements Initializable {
             for (CirclePiece circlePiece : circlePieceList) {
 
                 Button button = new Button();
-                Circle circle = new Circle(20, 20f, 7);
+                Circle circle = new Circle(20, 20f, 19);
 
                 //Handle when button is clicked on
                 button.setOnAction(event -> {

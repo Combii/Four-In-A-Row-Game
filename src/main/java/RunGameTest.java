@@ -24,7 +24,7 @@ public class RunGameTest extends Application {
         loader = new FXMLLoader(getClass().getResource("FourInARowGame.fxml"));
         Parent root = loader.load();
 
-        primaryStage.setTitle("Chat Program");
+        primaryStage.setTitle("Four In A Row");
         primaryStage.setResizable(true);
         primaryStage.setScene(new Scene(root));
         primaryStage.centerOnScreen();
