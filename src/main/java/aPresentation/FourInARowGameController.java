@@ -46,9 +46,6 @@ public class FourInARowGameController implements Initializable {
                 button.setOnAction(event -> {
                     circlePiece.setColor(Color.BLUE);
                     circle.setFill(circlePiece.getColor());
-                    button.setDisable(true);
-
-
                 });
                 circle.setFill(Color.WHITE);
 
