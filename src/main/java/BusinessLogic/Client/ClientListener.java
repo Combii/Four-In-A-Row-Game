@@ -12,7 +12,7 @@ import java.net.UnknownHostException;
  */
 public class ClientListener implements Runnable {
 
-   ServerConnection conn = ServerConnection.getConn();
+   PlayerConnection conn = PlayerConnection.getConn();
    DatagramSocket socket = conn.getSocket();
 
     public ClientListener() throws SocketException, UnknownHostException {
@@ -29,7 +29,7 @@ public class ClientListener implements Runnable {
     }
 
 
-    
+
 
     public String receiveMessage(){
             try {

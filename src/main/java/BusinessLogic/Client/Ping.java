@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 public class Ping implements Runnable {
 
 
-    ServerConnection conn = ServerConnection.getConn();
+    PlayerConnection conn = PlayerConnection.getConn();
 
     static boolean responseFromServer = false;
 
