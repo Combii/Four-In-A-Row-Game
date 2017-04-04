@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
 import java.net.URL;
 import java.util.*;
 import java.util.List;
@@ -20,7 +19,7 @@ public class FourInARowGameController implements Initializable {
     public GridPane gridPane;
 
     private FourInARowList fourInARowList;
-    private String color = "Blue";
+    private Color color = Color.BLUE;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,34 +29,31 @@ public class FourInARowGameController implements Initializable {
 
     private void setGridPane(FourInARowList fourInARowListClass) {
         gridPane.getChildren().clear();
+        setGridPanePickColumnButtons();
+
 
         List<List<CirclePiece>> fourInARowList = fourInARowListClass.getFourInARowList();
 
         try {
-            int rowCounter = 0, columnCounter = 0;
+            int rowCounter = 1, columnCounter = 0;
             for(List<CirclePiece> circlePieceList : fourInARowList)
 
             for (CirclePiece circlePiece : circlePieceList) {
 
                 Button button = new Button();
                 Circle circle = new Circle(20, 20f, 19);
-
-                //Handle when button is clicked on
-                button.setOnAction(event -> {
-                    circlePiece.setColor(Color.BLUE);
-                    circle.setFill(circlePiece.getColor());
-                    button.setDisable(true);
-
-
-                });
-                circle.setFill(Color.WHITE);
+                circle.setFill(circlePiece.getColor());
 
                 /*
-                Image thumbnail = new Image(localUrl, false);
-                ImageView view = new ImageView(thumbnail);
-                view.setFitHeight(100);
-                view.setFitWidth(150);
+                //Handle when button is clicked on
+                button.setOnAction(event -> {
+                    circlePiece.setColor(color);
+                    circle.setFill(circlePiece.getColor());
+                });
                 */
+
+                //button.fire();
+                button.setDisable(true);
                 button.setGraphic(circle);
 
                 gridPane.add(button, columnCounter, rowCounter);
@@ -67,10 +63,41 @@ public class FourInARowGameController implements Initializable {
                     columnCounter = 0;
                     rowCounter++;
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+
+    private void setGridPanePickColumnButtons(){
+        try {
+            int rowCounter = 0, columnCounter = 0;
+
+            while(columnCounter != 7) {
+                Button button = new Button();
+
+                //Handle when button is clicked on
+                int finalColumnCounter = columnCounter;
+                button.setOnAction(event -> {
+                    fourInARowList.setBrick(finalColumnCounter, color);
+                    setGridPane(fourInARowList);
+
+                });
+                button.setText("Place");
+
+
+                gridPane.add(button, columnCounter, rowCounter);
+
+                columnCounter++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //This is only for prettier GUI view
+        gridPane.requestFocus();
+    }
+
 }

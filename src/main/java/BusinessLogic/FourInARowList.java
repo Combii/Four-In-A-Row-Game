@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class FourInARowList {
 
-    private List<List<CirclePiece>> FourInARowList;
+    private List<List<CirclePiece>> fourInARowList;
 
     public FourInARowList() {
-        FourInARowList = createNewFourInARowList();
+        fourInARowList = createNewFourInARowList();
     }
 
     public List<List<CirclePiece>> getFourInARowList() {
-        return FourInARowList;
+        return fourInARowList;
     }
 
     @SuppressWarnings("unchecked")
@@ -35,7 +35,7 @@ public class FourInARowList {
             List<CirclePiece> circlePieceList = returnFourInARowList.get(rowCounter);
 
             for (int circlePiece = 0; circlePiece < circlePieceList.size(); circlePiece++) {
-                circlePieceList.set(circlePiece, new CirclePiece(Color.WHITE));
+                circlePieceList.set(circlePiece, new CirclePiece(Color.WHITE, rowCounter, circlePiece));
             }
             rowCounter++;
         }
@@ -43,9 +43,21 @@ public class FourInARowList {
         return returnFourInARowList;
     }
 
+    public void setBrick(int column, Color color){
+
+        for(int row = fourInARowList.size()-1; row >= 0; row--){
+            CirclePiece circlePiece = fourInARowList.get(row).get(column);
+
+            if(circlePiece.getColor().equals(Color.WHITE)){
+                circlePiece.setColor(color);
+                break;
+            }
+        }
+    }
+
     @Override
     public String toString() {
-        return  "FourInARowList=" + FourInARowList +
+        return  "FourInARowList=" + fourInARowList +
                 '}';
     }
 }
