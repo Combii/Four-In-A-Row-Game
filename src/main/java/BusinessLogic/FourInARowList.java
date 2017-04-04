@@ -1,5 +1,6 @@
 package BusinessLogic;
 
+import javafx.scene.paint.Color;
 import org.apache.commons.collections4.list.FixedSizeList;
 
 import java.util.Arrays;
@@ -34,7 +35,7 @@ public class FourInARowList {
             List<CirclePiece> circlePieceList = returnFourInARowList.get(rowCounter);
 
             for (int circlePiece = 0; circlePiece < circlePieceList.size(); circlePiece++) {
-                circlePieceList.set(circlePiece, new CirclePiece("Row: " + rowCounter + " Column: " + circlePiece));
+                circlePieceList.set(circlePiece, new CirclePiece(Color.WHITE));
             }
             rowCounter++;
         }

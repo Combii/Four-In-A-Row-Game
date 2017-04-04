@@ -5,6 +5,8 @@ import BusinessLogic.FourInARowList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 import java.net.URL;
 import java.util.*;
@@ -38,23 +40,23 @@ public class FourInARowGameController implements Initializable {
             for (CirclePiece circlePiece : circlePieceList) {
 
                 Button button = new Button();
+                Circle circle = new Circle(20, 20f, 7);
 
                 //Handle when button is clicked on
-                //Handle when button is clicked on
-                int finalRowCounter = rowCounter;
-                int finalColumnCounter = columnCounter;
                 button.setOnAction(event -> {
-                    System.out.println("CirclePiece: " + circlePiece.getColor());
-                    System.out.println("Row: " + finalRowCounter + " Column: " + finalColumnCounter);
+                    circlePiece.setColor(Color.BLUE);
+                    circle.setFill(circlePiece.getColor());
                 });
+                circle.setFill(Color.WHITE);
 
                 /*
                 Image thumbnail = new Image(localUrl, false);
                 ImageView view = new ImageView(thumbnail);
                 view.setFitHeight(100);
                 view.setFitWidth(150);
-                button.setGraphic(view);
                 */
+                button.setGraphic(circle);
+
                 gridPane.add(button, columnCounter, rowCounter);
 
                 columnCounter++;
