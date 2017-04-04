@@ -48,7 +48,6 @@ public class FourInARowGameController implements Initializable {
                     circle.setFill(circlePiece.getColor());
                 });
                 circle.setFill(Color.WHITE);
-
                 button.setDisable(true);
 
                 /*
@@ -66,6 +65,7 @@ public class FourInARowGameController implements Initializable {
                     columnCounter = 0;
                     rowCounter++;
                 }
+                //button.fire();
             }
         } catch (Exception e) {
             e.printStackTrace();
