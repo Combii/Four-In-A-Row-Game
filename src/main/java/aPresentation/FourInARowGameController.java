@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.*;
@@ -84,17 +85,21 @@ public class FourInARowGameController implements Initializable {
                 button.setOnAction(event -> {
                     fourInARowList.setBrick(finalColumnCounter, color);
                     setGridPane(fourInARowList);
+
                 });
                 button.setText("Place");
 
 
                 gridPane.add(button, columnCounter, rowCounter);
+
                 columnCounter++;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        //This is only for prettier GUI view
+        gridPane.requestFocus();
     }
 
 }
