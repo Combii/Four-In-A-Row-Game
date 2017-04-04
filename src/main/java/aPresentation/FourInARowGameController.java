@@ -49,6 +49,8 @@ public class FourInARowGameController implements Initializable {
                 });
                 circle.setFill(Color.WHITE);
 
+                button.setDisable(true);
+
                 /*
                 Image thumbnail = new Image(localUrl, false);
                 ImageView view = new ImageView(thumbnail);
