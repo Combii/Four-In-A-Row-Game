@@ -44,13 +44,13 @@ public class FourInARowList {
     }
 
     public void setBrick(int column, Color color){
-        List<CirclePiece> circlePieceList = fourInARowList.get(column);
 
-        for(int row = circlePieceList.size()-1; row >= 0; row--){
-            CirclePiece circlePiece = circlePieceList.get(row);
+        for(int row = fourInARowList.size()-1; row >= 0; row--){
+            CirclePiece circlePiece = fourInARowList.get(row).get(column);
 
             if(circlePiece.getColor().equals(Color.WHITE)){
                 circlePiece.setColor(color);
+                break;
             }
         }
     }
