@@ -1,4 +1,4 @@
-package Client;
+package BusinessLogic.Client;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

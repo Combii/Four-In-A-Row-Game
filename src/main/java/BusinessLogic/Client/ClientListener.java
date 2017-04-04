@@ -1,4 +1,4 @@
-package Client;
+package BusinessLogic.Client;
 
 
 import java.net.DatagramPacket;
@@ -29,6 +29,7 @@ public class ClientListener implements Runnable {
     }
 
 
+    
 
     public String receiveMessage(){
             try {

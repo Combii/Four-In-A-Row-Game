@@ -1,4 +1,4 @@
-package Client;
+package BusinessLogic.Client;
 
 import java.io.IOException;
 import java.net.*;
@@ -24,6 +24,8 @@ public class ServerConnection {
             conn = new ServerConnection();
             return conn;
         } else return conn;
+
+
 
     }
 

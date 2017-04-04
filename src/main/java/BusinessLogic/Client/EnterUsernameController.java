@@ -1,4 +1,4 @@
-package Client;
+package BusinessLogic.Client;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +38,7 @@ public class EnterUsernameController {
 
             stage = (Stage) okButton.getScene().getWindow();
             try {
-                loader = new FXMLLoader(getClass().getResource("/Client/ChatWindow.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/BusinessLogic/Client/ChatWindow.fxml"));
                 root = loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
