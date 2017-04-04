@@ -7,6 +7,9 @@ import javafx.scene.paint.Color;
  * 03 April 2017.
  */
 public class CirclePiece {
+    /**
+     * This will probably be changed to x and y position of CirclePiece
+     */
     private Color color;
 
     public CirclePiece(Color color) {
