@@ -7,8 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.*;
 import java.util.List;
