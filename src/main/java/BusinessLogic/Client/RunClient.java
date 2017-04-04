@@ -1,4 +1,4 @@
-package Client; /**
+package BusinessLogic.Client; /**
  * Created by David Stovlbaek
  * 16 February 2017.
  */
@@ -16,7 +16,7 @@ public class RunClient extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        loader = new FXMLLoader(getClass().getResource("/Client/EnterUsername.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/BusinessLogic/Client/EnterUsername.fxml"));
         Parent root = loader.load();
 
         primaryStage.setTitle("Chat Program");

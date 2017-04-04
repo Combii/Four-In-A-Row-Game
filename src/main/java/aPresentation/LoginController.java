@@ -14,7 +14,8 @@ public class LoginController {
 
     @FXML
     void startGameClicked(ActionEvent event) {
-        System.out.println("lol");
+        String ip = ipTextField.getText();
+        String port = portTextField.getText();
     }
 
 }

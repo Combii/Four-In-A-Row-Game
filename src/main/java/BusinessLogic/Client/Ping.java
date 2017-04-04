@@ -1,4 +1,4 @@
-package Client;
+package BusinessLogic.Client;
 
 import java.io.IOException;
 import java.net.SocketException;
