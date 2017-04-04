@@ -59,7 +59,7 @@ public class EnterUsernameController {
     private boolean checkUsernameIsUnique(String userName) throws IOException {
         ClientListener listener = new ClientListener();
 
-        ServerConnection conn = ServerConnection.getConn();
+        PlayerConnection conn = PlayerConnection.getConn();
         conn.sendKeyword("--USERNAME--" + userName);
 
 

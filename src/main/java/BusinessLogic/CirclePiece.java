@@ -2,19 +2,20 @@ package BusinessLogic;
 
 import javafx.scene.paint.Color;
 
+import java.io.Serializable;
+
 /**
  * Created by David Stovlbaek
  * 03 April 2017.
  */
-public class CirclePiece {
-    /**
-     * This will probably be changed to x and y position of CirclePiece
-     */
+public class CirclePiece implements Serializable{
+
     private Color color;
-    private int row;
-    private int column;
+    private final int row;
+    private final int column;
 
     public CirclePiece(Color color, int row, int column) {
+
         this.color = color;
         this.row = row;
         this.column = column;
@@ -36,16 +37,10 @@ public class CirclePiece {
         this.color = color;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public void setColumn(int column) {
-        this.column = column;
-    }
-
     @Override
     public String toString() {
         return color.toString();
     }
+
+
 }
