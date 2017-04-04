@@ -81,9 +81,9 @@ public class FourInARowGameController implements Initializable {
                 //Handle when button is clicked on
                 int finalColumnCounter = columnCounter;
                 button.setOnAction(event -> {
-                    fourInARowList.setBrick(finalColumnCounter, color);
+                    boolean winCheck = fourInARowList.setBrick(finalColumnCounter, color);
                     setGridPane(fourInARowList);
-
+                    System.out.println(winCheck);
                 });
                 button.setText("Place");
 
