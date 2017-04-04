@@ -1,7 +1,7 @@
 package aPresentation;
 
-import BusinessLogic.CirclePiece;
-import BusinessLogic.FourInARowList;
+import BusinessLogic.TheGame.CirclePiece;
+import BusinessLogic.TheGame.FourInARowList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
