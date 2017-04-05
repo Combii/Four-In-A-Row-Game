@@ -103,7 +103,7 @@ public class FourInARowList {
         }
 
 
-        //Check Obliquely Right
+        //Check Obliquely Right Up
         fourInARowCounter = 0;
         int rowCounter = row;
         for(int columnCounter = column; columnCounter < fourInARowList.get(rowCounter).size() && rowCounter >= 0; columnCounter++){

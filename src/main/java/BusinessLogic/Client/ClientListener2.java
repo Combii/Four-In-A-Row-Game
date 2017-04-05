@@ -1,9 +1,7 @@
 package BusinessLogic.Client;
 
 
-import BusinessLogic.CirclePiece;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
@@ -30,7 +28,7 @@ public class ClientListener2 implements Runnable {
                 client = socket.accept();
                 System.out.println("Connection");
                 ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
-                System.out.println((CirclePiece) ois.readObject());
+                System.out.println(ois.readObject());
 
             }
 
