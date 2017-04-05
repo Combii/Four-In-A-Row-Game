@@ -61,7 +61,7 @@ public class FourInARowList {
     private boolean checkIfFourInARow(int row, int column, Color color){
 
         /**
-         * Yes I know this is code smell. F it. You're Welcome to break this down to same method calling it 4 times.
+         * Yes I know this is code smell. F it. You're Welcome to break this down to same method calling it x times.
          */
 
 
