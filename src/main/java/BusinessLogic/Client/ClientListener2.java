@@ -20,7 +20,6 @@ public class ClientListener2 implements Runnable{
 
     @Override
     public void run() {
-
         Socket client;
         
         try {
@@ -34,9 +33,7 @@ public class ClientListener2 implements Runnable{
 
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
