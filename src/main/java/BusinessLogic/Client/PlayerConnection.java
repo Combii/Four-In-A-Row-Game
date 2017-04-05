@@ -1,11 +1,9 @@
 package BusinessLogic.Client;
 
 import BusinessLogic.TheGame.CirclePiece;
-import javafx.scene.paint.Color;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
+import javafx.scene.paint.Color;
+import java.io.IOException;
 import java.net.*;
 
 /**
@@ -14,47 +12,34 @@ import java.net.*;
  */
 public class PlayerConnection {
 
-    private DatagramSocket socket = new DatagramSocket(9999);
-    private final int playerPort;
-    private final InetAddress playerIp;
+    private Socket socket;
+    private final int port = 4444;
 
 
-    public PlayerConnection(int playerPort, InetAddress playerIp) throws SocketException {
-        this.playerPort = playerPort;
-        this.playerIp = playerIp;
-    }
-
-    public boolean sendCirclePiece(CirclePiece toSend) {
-
+    public PlayerConnection()  {
         try {
-
-            final ByteArrayOutputStream baos = new ByteArrayOutputStream(6400);
-            System.out.println(baos);
-            final ObjectOutputStream oos = new ObjectOutputStream(baos);
-            System.out.println(oos);
-            oos.writeObject(toSend);
-            System.out.println(oos);
-            final byte[] data = baos.toByteArray();
-
-            final DatagramPacket packet = new DatagramPacket(data, data.length,InetAddress.getLocalHost(),2222);
-            socket.send(packet);
+            socket = new Socket("localhost",port);
         } catch (IOException e) {
-            return false;
+            System.out.println("Could not connect");
         }
 
-        return true;
 
     }
 
-    public static void main(String[] args) throws UnknownHostException, SocketException {
-        CirclePiece c = new CirclePiece(new Color(0.5,1,1,1),2,2);
+    public void sendPiece(CirclePiece c) throws IOException {
 
-        PlayerConnection p = new PlayerConnection(2222,InetAddress.getLocalHost());
+        ObjectOutputStream ois = new ObjectOutputStream(socket.getOutputStream());
 
-        p.sendCirclePiece(c);
+        ois.writeObject("Hello!");
 
-        System.out.println("sent!");
+    }
+    public static void main(String[] args) throws IOException {
 
+        PlayerConnection p = new PlayerConnection();
+
+        CirclePiece c = new CirclePiece(new Color(1,1,1,1),2,2);
+
+        p.sendPiece(c);
 
 
     }

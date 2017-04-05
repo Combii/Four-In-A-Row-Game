@@ -1,10 +1,7 @@
 package BusinessLogic.Client;
 
 
-
-import BusinessLogic.TheGame.CirclePiece;
-
-import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
 
@@ -12,63 +9,46 @@ import java.net.*;
  * Created by David Stovlbaek
  * 21 February 2017.
  */
-public class ClientListener implements Runnable {
+public class ClientListener implements Runnable{
 
-    DatagramSocket socket = new DatagramSocket(2222,InetAddress.getLocalHost());
+    ServerSocket socket = new ServerSocket(4444);
 
-    public ClientListener() throws SocketException, UnknownHostException {
+
+
+    public ClientListener() throws IOException {
     }
 
     @Override
     public void run() {
-                while (true) {
-                    CirclePiece c = reveicePiece();
-                    System.out.println(c);
-
-                }
-    }
-
-
-
-
-    public String receiveMessage(){
-            try {
-                DatagramPacket request = new DatagramPacket(new byte[1024], 1024);
-                socket.receive(request);
-                String text = new String(request.getData(), 0, request.getLength());
-                System.out.println("Received Text: " + text);
-                return text;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        return null;
-    }
-
-    public CirclePiece reveicePiece() {
-
+        Socket client;
+        
         try {
-            DatagramPacket request = new DatagramPacket(new byte[1024], 1024);
-            System.out.println("Now listening on ip: " + socket.getLocalAddress() + " and port: " + socket.getLocalPort());
-            socket.receive(request);
-            System.out.println("received");
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(request.getData());
-            ObjectInputStream ois = new ObjectInputStream(inputStream);
+            while (true) {
+                client = socket.accept();
+                System.out.println("Connection established..");
+                ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
 
-            return (CirclePiece) ois.readObject();
+                System.out.println(ois.readObject());
 
-        } catch (Exception e) {
+
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+    }
+
+    public void checkProtocols(String message){
+
+
 
 
     }
 
-    public static void main(String[] args) throws SocketException, UnknownHostException {
-
+    public static void main(String[] args) throws IOException {
         new ClientListener().run();
-
     }
+
 
 
 }
