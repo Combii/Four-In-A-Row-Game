@@ -59,7 +59,6 @@ public class FourInARowList {
     }
 
     private boolean checkIfFourInARow(final int row, final int column, Color color){
-
         /**
          * Yes I know this is code smell. F it. You're Welcome to break this down to same method calling it x times.
          */
@@ -164,10 +163,8 @@ public class FourInARowList {
             rowCounter++;
         }
 
-
         return false;
     }
-
 
     private boolean checkIfColorEqualsColorInList(int row, int column, Color color){
         return fourInARowList.get(row).get(column).getColor().equals(color);
