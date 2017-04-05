@@ -1,12 +1,15 @@
+/*
 package BusinessLogic.Client;
 
 import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+*/
 /**
  * Created by BorisGrunwald on 25/02/2017.
- */
+ *//*
+
 public class Ping implements Runnable {
 
 
@@ -40,3 +43,4 @@ public class Ping implements Runnable {
     }
 
 }
+*/

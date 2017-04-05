@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public class CirclePiece implements Serializable{
 
-    private Color color;
+    private transient Color color;
     private final int row;
     private final int column;
 
@@ -39,8 +39,10 @@ public class CirclePiece implements Serializable{
 
     @Override
     public String toString() {
-        return color.toString();
+        return "CirclePiece{" +
+                "color=" + color +
+                ", row=" + row +
+                ", column=" + column +
+                '}';
     }
-
-
 }

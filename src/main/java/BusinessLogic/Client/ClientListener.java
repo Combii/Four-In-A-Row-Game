@@ -1,10 +1,12 @@
 package BusinessLogic.Client;
 
 
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+
+import BusinessLogic.TheGame.CirclePiece;
+
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
+import java.net.*;
 
 /**
  * Created by David Stovlbaek
@@ -12,8 +14,7 @@ import java.net.UnknownHostException;
  */
 public class ClientListener implements Runnable {
 
-   PlayerConnection conn = PlayerConnection.getConn();
-   DatagramSocket socket = conn.getSocket();
+    DatagramSocket socket = new DatagramSocket(2222,InetAddress.getLocalHost());
 
     public ClientListener() throws SocketException, UnknownHostException {
     }
@@ -21,10 +22,9 @@ public class ClientListener implements Runnable {
     @Override
     public void run() {
                 while (true) {
-                    String text = receiveMessage();
+                    CirclePiece c = reveicePiece();
+                    System.out.println(c);
 
-                    if(!isKeyWord(text))
-                    EnterUsernameController.getController().chatBox.appendText(text + "\n");
                 }
     }
 
@@ -43,26 +43,31 @@ public class ClientListener implements Runnable {
             }
         return null;
     }
-    
-    private boolean isKeyWord(String checkMessage){
-        if (checkMessage.equals("ALVE")) {
-            Ping.responseFromServer = true;
-            return true;
+
+    public CirclePiece reveicePiece() {
+
+        try {
+            DatagramPacket request = new DatagramPacket(new byte[1024], 1024);
+            System.out.println("Now listening on ip: " + socket.getLocalAddress() + " and port: " + socket.getLocalPort());
+            socket.receive(request);
+            System.out.println("received");
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(request.getData());
+            ObjectInputStream ois = new ObjectInputStream(inputStream);
+
+            return (CirclePiece) ois.readObject();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        else if(checkMessage.contains("--USERNAMES--")) {
-            showOnlineUsers(checkMessage);
-            return true;
-        }
-        else if(checkMessage.contains("--USERNAMES--")){
-            showOnlineUsers(checkMessage);
-            return true;
-        }
-        return false;
+        return null;
+
+
     }
 
-    private void showOnlineUsers(String users){
-        users = users.replaceAll("--USERNAMES--", "");
-        EnterUsernameController.getController().onlineUsers.setText(users);
+    public static void main(String[] args) throws SocketException, UnknownHostException {
+
+        new ClientListener().run();
+
     }
 
 
