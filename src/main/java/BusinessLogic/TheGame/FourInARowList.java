@@ -118,7 +118,20 @@ public class FourInARowList {
             rowCounter--;
         }
 
+        //Check Obliquely Left Up
+        fourInARowCounter = 0;
+        rowCounter = row;
+        for(int columnCounter = column; columnCounter >= 0 && rowCounter >= 0; columnCounter--){
+            if(checkIfColorEqualsColorInList(rowCounter, columnCounter, color))
+                fourInARowCounter++;
+            else
+                break;
 
+            if (fourInARowCounter == 4)
+                return true;
+
+            rowCounter--;
+        }
 
         return false;
     }
