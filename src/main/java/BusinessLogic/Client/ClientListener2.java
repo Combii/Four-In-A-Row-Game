@@ -1,11 +1,6 @@
 package BusinessLogic.Client;
 
-import BusinessLogic.TheGame.CirclePiece;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/WIP---Connection
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
