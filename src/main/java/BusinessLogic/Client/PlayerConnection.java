@@ -1,6 +1,7 @@
 package BusinessLogic.Client;
 
 import BusinessLogic.CirclePiece;
+import javafx.scene.paint.Color;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,17 +29,33 @@ public class PlayerConnection {
         try {
 
             final ByteArrayOutputStream baos = new ByteArrayOutputStream(6400);
+            System.out.println(baos);
             final ObjectOutputStream oos = new ObjectOutputStream(baos);
+            System.out.println(oos);
             oos.writeObject(toSend);
+            System.out.println(oos);
             final byte[] data = baos.toByteArray();
 
-            final DatagramPacket packet = new DatagramPacket(data, data.length);
+            final DatagramPacket packet = new DatagramPacket(data, data.length,InetAddress.getLocalHost(),2222);
             socket.send(packet);
         } catch (IOException e) {
             return false;
         }
 
         return true;
+
+    }
+
+    public static void main(String[] args) throws UnknownHostException, SocketException {
+        CirclePiece c = new CirclePiece(new Color(0.5,1,1,1),2,2);
+
+        PlayerConnection p = new PlayerConnection(2222,InetAddress.getLocalHost());
+
+        p.sendCirclePiece(c);
+
+        System.out.println("sent!");
+
+
 
     }
 }

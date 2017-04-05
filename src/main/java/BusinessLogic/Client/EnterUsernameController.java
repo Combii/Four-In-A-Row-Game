@@ -1,3 +1,4 @@
+/*
 package BusinessLogic.Client;
 
 import javafx.event.ActionEvent;
@@ -11,9 +12,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+*/
 /**
  * Created by BorisGrunwald on 21/02/2017.
- */
+ *//*
+
 public class EnterUsernameController {
 
 
@@ -59,8 +62,11 @@ public class EnterUsernameController {
     private boolean checkUsernameIsUnique(String userName) throws IOException {
         ClientListener listener = new ClientListener();
 
-        PlayerConnection conn = PlayerConnection.getConn();
-        conn.sendKeyword("--USERNAME--" + userName);
+        //For testing new clientlistener
+        */
+/*PlayerConnection conn = PlayerConnection.getConn();
+        conn.sendKeyword("--USERNAME--" + userName);*//*
+
 
 
         String receiveText = listener.receiveMessage();
@@ -81,3 +87,4 @@ public class EnterUsernameController {
         return loader.getController();
     }
 }
+*/
