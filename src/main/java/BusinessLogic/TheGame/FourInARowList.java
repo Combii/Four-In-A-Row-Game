@@ -133,6 +133,23 @@ public class FourInARowList {
             rowCounter--;
         }
 
+
+        //Check Obliquely Left Down
+        fourInARowCounter = 0;
+        rowCounter = row;
+        for(int columnCounter = column; columnCounter >= 0 && rowCounter < fourInARowList.size(); columnCounter--){
+            if(checkIfColorEqualsColorInList(rowCounter, columnCounter, color))
+                fourInARowCounter++;
+            else
+                break;
+
+            if (fourInARowCounter == 4)
+                return true;
+
+            rowCounter++;
+        }
+
+
         return false;
     }
 
