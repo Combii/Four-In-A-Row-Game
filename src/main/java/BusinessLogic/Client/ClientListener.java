@@ -12,12 +12,20 @@ import java.net.*;
  */
 public class ClientListener implements Runnable{
 
-    ServerSocket socket = new ServerSocket(4444);
+    ServerSocket socket;
 
     private boolean colorPickCheck = true;
     private Color colorChosen = Color.BLUE;
 
-    public ClientListener() throws IOException {
+    private final int port;
+
+    public ClientListener(int port) {
+        this.port = port;
+        try {
+            socket = new ServerSocket(this.port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -38,7 +46,7 @@ public class ClientListener implements Runnable{
         }
     }
 
-    private void checkProtocols(String message){
+    private void checkProtocols(String message) throws IOException {
         String protocol = message.substring(0, message.indexOf(':'));
         //System.out.println(message);
 
@@ -48,7 +56,7 @@ public class ClientListener implements Runnable{
             //System.out.println(time);
 
             if(colorPickCheck) {
-                new PlayerConnection().sendObject("COLORPICK: RED");
+                new PlayerConnection(port).sendObject("COLORPICK: RED");
                 colorPickCheck = false;
             }
         }
@@ -60,10 +68,6 @@ public class ClientListener implements Runnable{
             }
         }
 
-    }
-
-    public static void main(String[] args) throws IOException {
-        new ClientListener().run();
     }
 
 
