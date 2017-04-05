@@ -1,9 +1,7 @@
 package BusinessLogic.Client;
 
+import BusinessLogic.TheGame.CirclePiece;
 
-import BusinessLogic.CirclePiece;
-
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
@@ -12,7 +10,7 @@ import java.net.*;
  * Created by David Stovlbaek
  * 21 February 2017.
  */
-public class ClientListener2 implements Runnable {
+public class ClientListener2 implements Runnable{
 
     ServerSocket socket = new ServerSocket(4444);
 
@@ -24,17 +22,23 @@ public class ClientListener2 implements Runnable {
     @Override
     public void run() {
 
-        Socket client = null;
+        Socket client;
+        
         try {
             while (true) {
                 client = socket.accept();
-                System.out.println("Connection");
+                System.out.println("Connection established..");
                 ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
-                System.out.println((CirclePiece) ois.readObject());
+
+                while() {
+
+                }
 
             }
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
