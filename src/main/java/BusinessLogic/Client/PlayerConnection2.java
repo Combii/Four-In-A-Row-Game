@@ -1,11 +1,8 @@
 package BusinessLogic.Client;
 
 import BusinessLogic.TheGame.CirclePiece;
-
 import java.io.ObjectOutputStream;
-
 import javafx.scene.paint.Color;
-
 import java.io.IOException;
 import java.net.*;
 
