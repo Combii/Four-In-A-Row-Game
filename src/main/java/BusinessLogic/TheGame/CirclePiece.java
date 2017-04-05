@@ -33,7 +33,7 @@ public class CirclePiece implements Serializable{
         return column;
     }
 
-    public void setColor(Color color) {
+    void setColor(Color color) {
         this.color = color;
     }
 
