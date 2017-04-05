@@ -58,8 +58,7 @@ public class FourInARowList {
         return false;
     }
 
-    private boolean checkIfFourInARow(int row, int column, Color color){
-
+    private boolean checkIfFourInARow(final int row, final int column, Color color){
         /**
          * Yes I know this is code smell. F it. You're Welcome to break this down to same method calling it x times.
          */
@@ -103,7 +102,7 @@ public class FourInARowList {
         }
 
 
-        //Check Obliquely Right
+        //Check Obliquely Right Up
         fourInARowCounter = 0;
         int rowCounter = row;
         for(int columnCounter = column; columnCounter < fourInARowList.get(rowCounter).size() && rowCounter >= 0; columnCounter++){
@@ -118,11 +117,54 @@ public class FourInARowList {
             rowCounter--;
         }
 
+        //Check Obliquely Left Up
+        fourInARowCounter = 0;
+        rowCounter = row;
+        for(int columnCounter = column; columnCounter >= 0 && rowCounter >= 0; columnCounter--){
+            if(checkIfColorEqualsColorInList(rowCounter, columnCounter, color))
+                fourInARowCounter++;
+            else
+                break;
 
+            if (fourInARowCounter == 4)
+                return true;
+
+            rowCounter--;
+        }
+
+
+        //Check Obliquely Left Down
+        fourInARowCounter = 0;
+        rowCounter = row;
+        for(int columnCounter = column; rowCounter < fourInARowList.size() && columnCounter >= 0; columnCounter--){
+            if(checkIfColorEqualsColorInList(rowCounter, columnCounter, color))
+                fourInARowCounter++;
+            else
+                break;
+
+            if (fourInARowCounter == 4)
+                return true;
+
+            rowCounter++;
+        }
+
+        //Check Obliquely Right Down
+        fourInARowCounter = 0;
+        rowCounter = row;
+        for(int columnCounter = column; rowCounter < fourInARowList.size() && columnCounter < fourInARowList.get(rowCounter).size(); columnCounter++){
+            if(checkIfColorEqualsColorInList(rowCounter, columnCounter, color))
+                fourInARowCounter++;
+            else
+                break;
+
+            if (fourInARowCounter == 4)
+                return true;
+
+            rowCounter++;
+        }
 
         return false;
     }
-
 
     private boolean checkIfColorEqualsColorInList(int row, int column, Color color){
         return fourInARowList.get(row).get(column).getColor().equals(color);

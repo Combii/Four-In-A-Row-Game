@@ -2,6 +2,10 @@ package BusinessLogic.Client;
 
 import BusinessLogic.TheGame.CirclePiece;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/WIP---Connection
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
@@ -30,9 +34,8 @@ public class ClientListener2 implements Runnable{
                 System.out.println("Connection established..");
                 ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
 
-                while() {
+                System.out.println(ois.readObject());
 
-                }
 
             }
 
