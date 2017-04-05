@@ -35,7 +35,9 @@ public class FourInARowList {
             List<CirclePiece> circlePieceList = returnFourInARowList.get(rowCounter);
 
             for (int circlePiece = 0; circlePiece < circlePieceList.size(); circlePiece++) {
+
                 circlePieceList.set(circlePiece, new CirclePiece(Color.WHITE, rowCounter, circlePiece));
+
             }
             rowCounter++;
         }
@@ -59,7 +61,7 @@ public class FourInARowList {
     private boolean checkIfFourInARow(int row, int column, Color color){
 
         /**
-         * Yes I know this is code smell. F it. You're Welcome to break this down to same method calling it 5 times.
+         * Yes I know this is code smell. F it. You're Welcome to break this down to same method calling it x times.
          */
 
 
@@ -101,6 +103,20 @@ public class FourInARowList {
         }
 
 
+        //Check Obliquely Right
+        fourInARowCounter = 0;
+        int rowCounter = row;
+        for(int columnCounter = column; columnCounter < fourInARowList.get(rowCounter).size() && rowCounter >= 0; columnCounter++){
+            if(checkIfColorEqualsColorInList(rowCounter, columnCounter, color))
+                fourInARowCounter++;
+            else
+                break;
+
+            if (fourInARowCounter == 4)
+                return true;
+
+            rowCounter--;
+        }
 
 
 

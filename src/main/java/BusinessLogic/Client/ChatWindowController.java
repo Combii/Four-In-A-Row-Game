@@ -39,7 +39,7 @@ public class ChatWindowController {
         //Shut down Thread
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
-                ServerConnection.getConn().sendKeyword("--QUIT--:" + username.getText());
+                PlayerConnection.getConn().sendKeyword("--QUIT--:" + username.getText());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -47,7 +47,7 @@ public class ChatWindowController {
     }
 
     public void sendButton(ActionEvent actionEvent) throws SocketException, UnknownHostException {
-        ServerConnection conn = ServerConnection.getConn();
+        PlayerConnection conn = PlayerConnection.getConn();
         conn.sendText(textToSend.getText());
         textToSend.clear();
     }
