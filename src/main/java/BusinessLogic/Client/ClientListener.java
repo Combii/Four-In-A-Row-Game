@@ -1,6 +1,8 @@
 package BusinessLogic.Client;
 
 
+import aPresentation.LoginController;
+
 import java.awt.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -48,24 +50,21 @@ public class ClientListener implements Runnable{
 
     private void checkProtocols(String message) throws IOException {
         String protocol = message.substring(0, message.indexOf(':'));
-        //System.out.println(message);
+        System.out.println(message);
 
         if(protocol.equals("CONNECTION")){
             System.out.println("Connection established...");
             String time = message.substring(message.indexOf(':')+1).trim();
-            //System.out.println(time);
+            System.out.println(LoginController.startedProgramTime);
 
-            if(colorPickCheck) {
+            if(LoginController.startedProgramTime > Long.parseLong(time)){
                 new PlayerConnection(port).sendObject("COLORPICK: RED");
-                colorPickCheck = false;
             }
         }
         else if(protocol.equals("COLORPICK")){
-            if(colorPickCheck){
                 if(message.substring(message.indexOf(':')+1).trim().equals("RED"))
                 colorChosen = Color.RED;
                 System.out.println("COLOR IS NOW RED");
-            }
         }
 
     }

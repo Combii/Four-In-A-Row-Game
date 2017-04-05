@@ -8,9 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 public class LoginController {
+
+    public static Long startedProgramTime = System.currentTimeMillis();;
 
     @FXML
     public Text waitingForConnectionText;
@@ -69,8 +70,8 @@ public class LoginController {
 
         //waitNotification.interrupt();
 
-        playerConnection.sendObject("CONNECTION: ");
-        clientListenerThread.interrupt();
+        playerConnection.sendObject("CONNECTION: " + startedProgramTime);
+        //clientListenerThread.interrupt();
         waitForConnectionNotification.interrupt();
         });
         setupConnection.start();
