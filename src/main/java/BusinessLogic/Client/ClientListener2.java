@@ -38,6 +38,10 @@ public class ClientListener2 implements Runnable{
         }
     }
 
+    public void checkProtocols(String message){
+
+    }
+
     public static void main(String[] args) throws IOException {
         new ClientListener2().run();
     }
