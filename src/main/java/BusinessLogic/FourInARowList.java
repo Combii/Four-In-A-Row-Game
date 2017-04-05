@@ -103,6 +103,20 @@ public class FourInARowList {
         }
 
 
+        //Check Obliquely Right
+        fourInARowCounter = 0;
+        int rowCounter = row;
+        for(int columnCounter = column; columnCounter < fourInARowList.get(rowCounter).size() && rowCounter >= 0; columnCounter++){
+            if(checkIfColorEqualsColorInList(rowCounter, columnCounter, color))
+                fourInARowCounter++;
+            else
+                break;
+
+            if (fourInARowCounter == 4)
+                return true;
+
+            rowCounter--;
+        }
 
 
 
