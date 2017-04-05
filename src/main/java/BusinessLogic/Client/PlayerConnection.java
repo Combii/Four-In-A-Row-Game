@@ -1,10 +1,9 @@
 package BusinessLogic.Client;
 
-import BusinessLogic.TheGame.CirclePiece;
 import java.io.ObjectOutputStream;
-import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.net.*;
+import java.time.LocalDateTime;
 
 /**
  * Created by David Stovlbaek
@@ -16,30 +15,31 @@ public class PlayerConnection {
     private final int port = 4444;
 
 
-    public PlayerConnection()  {
+    PlayerConnection()  {
         try {
             socket = new Socket("localhost",port);
         } catch (IOException e) {
             System.out.println("Could not connect");
         }
+    }
 
+    void sendObject(Object object) {
+        try {
+            ObjectOutputStream ois = new ObjectOutputStream(socket.getOutputStream());
+            ois.writeObject(object);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 
-    public void sendPiece(CirclePiece c) throws IOException {
-
-        ObjectOutputStream ois = new ObjectOutputStream(socket.getOutputStream());
-
-        ois.writeObject("Hello!");
-
-    }
     public static void main(String[] args) throws IOException {
 
         PlayerConnection p = new PlayerConnection();
 
-        CirclePiece c = new CirclePiece(new Color(1,1,1,1),2,2);
-
-        p.sendPiece(c);
+        //CirclePiece c = new CirclePiece(new Color(1,1,1,1),2,2);
+        p.sendObject("CONNECTION: " + LocalDateTime.now());
 
 
     }

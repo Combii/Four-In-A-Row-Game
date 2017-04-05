@@ -1,6 +1,7 @@
 package BusinessLogic.Client;
 
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
@@ -13,7 +14,8 @@ public class ClientListener implements Runnable{
 
     ServerSocket socket = new ServerSocket(4444);
 
-
+    private boolean colorPickCheck = true;
+    private Color colorChosen = Color.BLUE;
 
     public ClientListener() throws IOException {
     }
@@ -21,16 +23,14 @@ public class ClientListener implements Runnable{
     @Override
     public void run() {
         Socket client;
-        
+
         try {
             while (true) {
+
                 client = socket.accept();
-                System.out.println("Connection established..");
                 ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
 
-                System.out.println(ois.readObject());
-
-
+                checkProtocols(ois.readObject().toString());
             }
 
         } catch (IOException | ClassNotFoundException e) {
@@ -38,10 +38,27 @@ public class ClientListener implements Runnable{
         }
     }
 
-    public void checkProtocols(String message){
+    private void checkProtocols(String message){
+        String protocol = message.substring(0, message.indexOf(':'));
+        //System.out.println(message);
 
+        if(protocol.equals("CONNECTION")){
+            System.out.println("Connection established...");
+            String time = message.substring(message.indexOf(':')+1).trim();
+            //System.out.println(time);
 
-
+            if(colorPickCheck) {
+                new PlayerConnection().sendObject("COLORPICK: RED");
+                colorPickCheck = false;
+            }
+        }
+        else if(protocol.equals("COLORPICK")){
+            if(colorPickCheck){
+                if(message.substring(message.indexOf(':')+1).trim().equals("RED"))
+                colorChosen = Color.RED;
+                System.out.println("COLOR IS NOW RED");
+            }
+        }
 
     }
 
