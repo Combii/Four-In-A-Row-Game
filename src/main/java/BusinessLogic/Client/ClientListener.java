@@ -1,7 +1,8 @@
 package BusinessLogic.Client;
 
 
-import BusinessLogic.CirclePiece;
+
+import BusinessLogic.TheGame.CirclePiece;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
