@@ -1,4 +1,4 @@
-package BusinessLogic;
+package BusinessLogic.TheGame;
 
 import javafx.scene.paint.Color;
 
