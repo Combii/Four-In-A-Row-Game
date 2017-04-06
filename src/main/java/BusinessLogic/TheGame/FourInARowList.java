@@ -47,7 +47,7 @@ public class FourInARowList {
         return returnFourInARowList;
     }
 
-    public boolean setBrick(int column, Color color) throws IOException {
+    public boolean setBrick(int column, Color color) {
 
         for(int row = fourInARowList.size()-1; row >= 0; row--){
             CirclePiece circlePiece = fourInARowList.get(row).get(column);
@@ -55,7 +55,11 @@ public class FourInARowList {
             if(circlePiece.getColor().equals(Color.WHITE)){
                 circlePiece.setColor(color);
 
-                new PlayerConnection().sendObject("CIRCLESELECTED: " + circlePiece.getRow() + " " + circlePiece.getColumn() + circlePiece.getColor());
+                try {
+                    new PlayerConnection().sendObject("CIRCLESELECTED: " + circlePiece.getRow() + " " + circlePiece.getColumn() + circlePiece.getColor());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 return checkIfFourInARow(row, column, color);
             }
