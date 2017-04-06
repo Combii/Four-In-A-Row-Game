@@ -28,7 +28,7 @@ public class FourInARowGameController implements Initializable {
     private Color color = ClientListener.colorChosen;
 
     public static boolean waitForTurn;
-    public static boolean gameOver = false;
+    private boolean gameOver = false;
 
 
     @Override
