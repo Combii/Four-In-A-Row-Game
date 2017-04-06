@@ -65,7 +65,7 @@ public class ClientListener implements Runnable{
                 colorChosen = Color.BLUE;
             }
             Platform.runLater(() -> LoginController.getLoginController().changeStage());
-            Platform.runLater(() -> LoginController.getFourInARowGameController().usernameText.setText(username));
+            Platform.runLater(() -> LoginController.getFourInARowGameController().usernameText.setText("Opponents Username: " + username));
 
         } else if(protocol.equals("CIRCLESELECTED")) {
             String column = message.substring(message.indexOf(':')+1).trim();
