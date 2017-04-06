@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class LoginController {
-
+    //Needed for ClientListener
     public static Long startedProgramTime = System.currentTimeMillis();;
 
     @FXML
