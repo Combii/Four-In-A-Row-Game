@@ -1,12 +1,9 @@
 package BusinessLogic.Client;
 
-import BusinessLogic.TheGame.CirclePiece;
-import javafx.scene.paint.Color;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.IOException;
 import java.net.*;
+import java.time.LocalDateTime;
 
 /**
  * Created by David Stovlbaek
@@ -14,48 +11,21 @@ import java.net.*;
  */
 public class PlayerConnection {
 
-    private DatagramSocket socket = new DatagramSocket(9999);
-    private final int playerPort;
-    private final InetAddress playerIp;
+    private Socket socket;
 
 
-    public PlayerConnection(int playerPort, InetAddress playerIp) throws SocketException {
-        this.playerPort = playerPort;
-        this.playerIp = playerIp;
+    public PlayerConnection(String ip, int port) throws IOException {
+        socket = new Socket(ip,port);
     }
 
-    public boolean sendCirclePiece(CirclePiece toSend) {
-
+    public void sendObject(Object object) {
         try {
-
-            final ByteArrayOutputStream baos = new ByteArrayOutputStream(6400);
-            System.out.println(baos);
-            final ObjectOutputStream oos = new ObjectOutputStream(baos);
-            System.out.println(oos);
-            oos.writeObject(toSend);
-            System.out.println(oos);
-            final byte[] data = baos.toByteArray();
-
-            final DatagramPacket packet = new DatagramPacket(data, data.length,InetAddress.getLocalHost(),2222);
-            socket.send(packet);
-        } catch (IOException e) {
-            return false;
+            ObjectOutputStream ois = new ObjectOutputStream(socket.getOutputStream());
+            ois.writeObject(object);
         }
-
-        return true;
-
-    }
-
-    public static void main(String[] args) throws UnknownHostException, SocketException {
-        CirclePiece c = new CirclePiece(new Color(0.5,1,1,1),2,2);
-
-        PlayerConnection p = new PlayerConnection(2222,InetAddress.getLocalHost());
-
-        p.sendCirclePiece(c);
-
-        System.out.println("sent!");
-
-
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 }
