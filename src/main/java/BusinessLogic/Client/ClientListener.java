@@ -55,7 +55,6 @@ public class ClientListener implements Runnable{
         if(protocol.equals("CONNECTION")){
             System.out.println("Connection established...");
             String time = message.substring(message.indexOf(':')+1).trim();
-            System.out.println(LoginController.startedProgramTime);
 
             if(LoginController.startedProgramTime > Long.parseLong(time)){
                 new PlayerConnection(port).sendObject("COLORPICK: RED");

@@ -14,8 +14,8 @@ public class PlayerConnection {
     private Socket socket;
 
 
-    public PlayerConnection(int port) throws IOException {
-        socket = new Socket("localhost",port);
+    public PlayerConnection(String ip, int port) throws IOException {
+        socket = new Socket(ip,port);
     }
 
     public void sendObject(Object object) {
