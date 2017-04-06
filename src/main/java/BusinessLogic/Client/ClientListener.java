@@ -51,7 +51,6 @@ public class ClientListener implements Runnable{
 
     private void checkProtocols(String message) throws IOException {
         String protocol = message.substring(0, message.indexOf(':'));
-        System.out.println(message);
 
         if(protocol.equals("CONNECTION")){
             System.out.println("Connection established...");
@@ -59,7 +58,7 @@ public class ClientListener implements Runnable{
 
             if(LoginController.startedProgramTime > Long.parseLong(time)){
                colorChosen = Color.RED;
-               System.out.println("COLOR IS NOW RED");
+                System.out.println("COLOR IS NOW RED");
             }
             else{
                 colorChosen = Color.BLUE;
@@ -67,10 +66,17 @@ public class ClientListener implements Runnable{
         } else if(protocol.equals("CIRCLESELECTED")) {
             String column = message.substring(message.indexOf(':')+1).trim();
 
+            boolean winCheck = false;
+
             if(colorChosen.equals(Color.RED))
-                FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.BLUE);
+                winCheck = FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.BLUE);
             else
-                FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.RED);
+                winCheck = FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.RED);
+
+            if(winCheck)
+                LoginController.getController().stopGame("You Lost. Game Over");
+            else
+            FourInARowGameController.waitForTurn = false;
 
             Platform.runLater(() -> LoginController.getController().setGridPane(FourInARowGameController.fourInARowList));
         }
