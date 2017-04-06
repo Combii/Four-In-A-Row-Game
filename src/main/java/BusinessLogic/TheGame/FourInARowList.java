@@ -54,7 +54,7 @@ public class FourInARowList {
 
             if(circlePiece.getColor().equals(Color.WHITE)){
                 circlePiece.setColor(color);
-
+                System.out.println(row);
                 try {
                     new PlayerConnection().sendObject("CIRCLESELECTED: " + circlePiece.getColumn());
                 } catch (IOException e) {
