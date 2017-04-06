@@ -16,7 +16,11 @@ import java.io.IOException;
 
 public class LoginController {
     //Needed for ClientListener
-    public static Long startedProgramTime = System.currentTimeMillis();;
+    public static Long startedProgramTime = System.currentTimeMillis();
+
+    public static String ip;
+    public static int port;
+
 
     @FXML
     public Text waitingForConnectionText;
@@ -30,8 +34,8 @@ public class LoginController {
     @FXML
     void startGameClicked(ActionEvent event) throws InterruptedException {
 
-        String ip = ipTextField.getText();
-        int port = Integer.parseInt(portTextField.getText());
+        ip = ipTextField.getText();
+        port = Integer.parseInt(portTextField.getText());
 
         Thread waitForConnectionNotification = new Thread(() -> {
             try {
@@ -59,7 +63,7 @@ public class LoginController {
 
         while(true) {
             try {
-                playerConnection = new PlayerConnection(ip, port);
+                playerConnection = new PlayerConnection();
             } catch (IOException ignored) {
             }
 

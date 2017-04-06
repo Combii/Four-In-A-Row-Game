@@ -1,6 +1,7 @@
 package aPresentation;
 
 import BusinessLogic.Client.ClientListener;
+import BusinessLogic.Client.PlayerConnection;
 import BusinessLogic.TheGame.CirclePiece;
 import BusinessLogic.TheGame.FourInARowList;
 import javafx.fxml.Initializable;
