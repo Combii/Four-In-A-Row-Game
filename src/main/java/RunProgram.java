@@ -23,7 +23,7 @@ public class RunProgram extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Start.fxml"));
         Parent root = loader.load();
 
-        primaryStage.setTitle("Chat Program");
+        primaryStage.setTitle("Four In A Row");
         primaryStage.setResizable(true);
         primaryStage.setScene(new Scene(root));
         primaryStage.centerOnScreen();

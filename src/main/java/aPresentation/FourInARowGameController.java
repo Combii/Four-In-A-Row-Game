@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,12 +22,18 @@ import java.util.List;
  */
 public class FourInARowGameController implements Initializable {
     public GridPane gridPane;
+    public Text wonGameText;
 
     public static FourInARowList fourInARowList;
     private Color color = ClientListener.colorChosen;
 
+    public static boolean waitForTurn;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(color.equals(Color.RED))
+            waitForTurn = true;
+
         fourInARowList = new FourInARowList();
         setGridPane(fourInARowList);
     }
@@ -76,40 +83,52 @@ public class FourInARowGameController implements Initializable {
     }
 
     private void setGridPanePickColumnButtons(){
-        try {
-            int rowCounter = 0, columnCounter = 0;
+            try {
+                int rowCounter = 0, columnCounter = 0;
 
-            while(columnCounter != 7) {
-                Button button = new Button();
+                while (columnCounter != 7) {
+                    Button button = new Button();
 
-                //Handle when button is clicked on
-                int finalColumnCounter = columnCounter;
-                button.setOnAction(event -> {
-                    boolean winCheck = fourInARowList.setBrick(finalColumnCounter, color);
+                    //Handle when button is clicked on
+                    int finalColumnCounter = columnCounter;
+                    button.setOnAction(event -> {
+                        boolean wincheck = fourInARowList.setBrick(finalColumnCounter, color);
 
-                    try {
-                        new PlayerConnection().sendObject("CIRCLESELECTED: " + finalColumnCounter);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                        if(wincheck)
+                            stopGame("You Won!");
 
-                    setGridPane(fourInARowList);
-                    System.out.println(winCheck);
-                });
-                button.setText("Place");
+                        waitForTurn = true;
 
+                        try {
+                            new PlayerConnection().sendObject("CIRCLESELECTED: " + finalColumnCounter);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
-                gridPane.add(button, columnCounter, rowCounter);
+                        setGridPane(fourInARowList);
+                    });
+                    button.setText("Place");
 
-                columnCounter++;
+                    if(waitForTurn)
+                        button.setDisable(true);
+
+                    gridPane.add(button, columnCounter, rowCounter);
+
+                    columnCounter++;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        //This is only for prettier GUI view
+            //This is only for prettier GUI view
         gridPane.requestFocus();
+
     }
 
+
+    public void stopGame(String winOrLostMessage){
+        wonGameText.setText(winOrLostMessage);
+        waitForTurn = true;
+    }
 
 }
