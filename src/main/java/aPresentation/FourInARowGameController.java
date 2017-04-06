@@ -119,6 +119,8 @@ public class FourInARowGameController implements Initializable {
                         } else
                             announcingText.setText("It's your turn");
                     }
+                    else
+                        button.setDisable(true);
 
                     gridPane.add(button, columnCounter, rowCounter);
 
