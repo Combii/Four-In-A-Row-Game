@@ -16,7 +16,7 @@ public class PlayerConnection {
 
 
     public PlayerConnection() throws IOException {
-        socket = new Socket(LoginController.ip, LoginController.port);
+        socket = new Socket("localhost", Integer.parseInt(LoginController.ip));
     }
 
     public void sendObject(Object object) {
