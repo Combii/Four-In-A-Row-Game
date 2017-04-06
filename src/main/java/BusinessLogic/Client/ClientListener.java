@@ -55,7 +55,7 @@ public class ClientListener implements Runnable{
             System.out.println("Connection established...");
             String time = message.substring(message.indexOf(':')+1).trim();
 
-            if(LoginController.startedProgramTime < Long.parseLong(time)){
+            if(LoginController.startedProgramTime > Long.parseLong(time)){
                colorChosen = Color.RED;
                 System.out.println("COLOR IS NOW RED");
             }
