@@ -20,9 +20,11 @@ public class ClientListener implements Runnable{
     private Color colorChosen = Color.BLUE;
 
     private final int port;
+    private final String ip;
 
-    public ClientListener(int port) {
+    public ClientListener(String ip, int port) {
         this.port = port;
+        this.ip = ip;
         try {
             socket = new ServerSocket(this.port);
         } catch (IOException e) {
@@ -57,7 +59,7 @@ public class ClientListener implements Runnable{
             String time = message.substring(message.indexOf(':')+1).trim();
 
             if(LoginController.startedProgramTime > Long.parseLong(time)){
-                new PlayerConnection(port).sendObject("COLORPICK: RED");
+                new PlayerConnection(ip, port).sendObject("COLORPICK: RED");
             }
         }
         else if(protocol.equals("COLORPICK")){
