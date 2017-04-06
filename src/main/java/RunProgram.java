@@ -1,3 +1,4 @@
+import aPresentation.FourInARowGameController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,8 +11,6 @@ import javafx.stage.Stage;
  */
 public class RunProgram extends Application {
 
-    private static FXMLLoader loader;
-
     public static void main(String[] args) {
 
         launch(args);
@@ -21,7 +20,7 @@ public class RunProgram extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        loader = new FXMLLoader(getClass().getResource("/Start.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Start.fxml"));
         Parent root = loader.load();
 
         primaryStage.setTitle("Chat Program");
@@ -31,4 +30,5 @@ public class RunProgram extends Application {
         primaryStage.show();
 
     }
+
 }

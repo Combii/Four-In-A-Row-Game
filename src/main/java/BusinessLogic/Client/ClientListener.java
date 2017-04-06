@@ -3,6 +3,7 @@ package BusinessLogic.Client;
 
 import aPresentation.FourInARowGameController;
 import aPresentation.LoginController;
+import javafx.application.Platform;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
@@ -71,7 +72,7 @@ public class ClientListener implements Runnable{
             else
                 FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.RED);
 
-
+            Platform.runLater(() -> LoginController.getController().setGridPane(FourInARowGameController.fourInARowList));
         }
 
 

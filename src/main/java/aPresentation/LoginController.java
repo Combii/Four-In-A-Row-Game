@@ -21,6 +21,8 @@ public class LoginController {
     public static String ip;
     public static int port;
 
+    private static FXMLLoader loader;
+
 
     @FXML
     public Text waitingForConnectionText;
@@ -82,24 +84,29 @@ public class LoginController {
         clientListenerThread.interrupt();
         waitForConnectionNotification.interrupt();
 
-        Platform.runLater(() -> changeStage());
+        Platform.runLater(this::changeStage);
         });
         waitForConnection.start();
     }
 
     private void changeStage(){
         try {
-        Stage stage = (Stage) waitingForConnectionText.getScene().getWindow();
-        //load up OTHER FXML document
-        Parent root = FXMLLoader.load(getClass().getResource("/FourInARowGame.fxml"));
-        //create a new scene with root and set the stage
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
+            Stage stage = (Stage) waitingForConnectionText.getScene().getWindow();
+            //load up OTHER FXML document
+            loader = new FXMLLoader(getClass().getResource("/FourInARowGame.fxml"));
+            Parent root = loader.load();
+            //create a new scene with root and set the stage
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static FourInARowGameController getController(){
+        return loader.getController();
     }
 
 }

@@ -1,10 +1,8 @@
 package BusinessLogic.TheGame;
 
-import BusinessLogic.Client.PlayerConnection;
 import javafx.scene.paint.Color;
 import org.apache.commons.collections4.list.FixedSizeList;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,19 +45,13 @@ public class FourInARowList {
         return returnFourInARowList;
     }
 
-    public synchronized boolean setBrick(int column, Color color) {
+    public boolean setBrick(int column, Color color) {
 
         for(int row = fourInARowList.size()-1; row >= 0; row--){
             CirclePiece circlePiece = fourInARowList.get(row).get(column);
 
             if(circlePiece.getColor().equals(Color.WHITE)){
                 circlePiece.setColor(color);
-                System.out.println(row);
-                try {
-                    new PlayerConnection().sendObject("CIRCLESELECTED: " + circlePiece.getColumn());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
                 return checkIfFourInARow(row, column, color);
             }

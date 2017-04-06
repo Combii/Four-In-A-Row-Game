@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.List;
@@ -29,7 +31,7 @@ public class FourInARowGameController implements Initializable {
         setGridPane(fourInARowList);
     }
 
-    private void setGridPane(FourInARowList fourInARowListClass) {
+    public void setGridPane(FourInARowList fourInARowListClass) {
         gridPane.getChildren().clear();
         setGridPanePickColumnButtons();
 
@@ -84,6 +86,13 @@ public class FourInARowGameController implements Initializable {
                 int finalColumnCounter = columnCounter;
                 button.setOnAction(event -> {
                     boolean winCheck = fourInARowList.setBrick(finalColumnCounter, color);
+
+                    try {
+                        new PlayerConnection().sendObject("CIRCLESELECTED: " + finalColumnCounter);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                     setGridPane(fourInARowList);
                     System.out.println(winCheck);
                 });
@@ -101,5 +110,6 @@ public class FourInARowGameController implements Initializable {
         //This is only for prettier GUI view
         gridPane.requestFocus();
     }
+
 
 }
