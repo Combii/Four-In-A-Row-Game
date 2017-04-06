@@ -50,7 +50,7 @@ public class LoginController {
         String ip = ipTextField.getText();
         int port = Integer.parseInt(portTextField.getText());
 
-        Thread clientListenerThread = new Thread(new ClientListener(ip, port));
+        Thread clientListenerThread = new Thread(new ClientListener(port));
         clientListenerThread.start();
 
         PlayerConnection playerConnection = null;

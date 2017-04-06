@@ -16,15 +16,12 @@ public class ClientListener implements Runnable{
 
     ServerSocket socket;
 
-    private boolean colorPickCheck = true;
     private Color colorChosen = Color.BLUE;
 
     private final int port;
-    private final String ip;
 
-    public ClientListener(String ip, int port) {
+    public ClientListener(int port) {
         this.port = port;
-        this.ip = ip;
         try {
             socket = new ServerSocket(this.port);
         } catch (IOException e) {
@@ -58,14 +55,9 @@ public class ClientListener implements Runnable{
             System.out.println("Connection established...");
             String time = message.substring(message.indexOf(':')+1).trim();
 
-            if(LoginController.startedProgramTime > Long.parseLong(time)){
-                new PlayerConnection(ip, port).sendObject("COLORPICK: RED");
+            if(LoginController.startedProgramTime < Long.parseLong(time)){
+               colorChosen = Color.RED;
             }
-        }
-        else if(protocol.equals("COLORPICK")){
-                if(message.substring(message.indexOf(':')+1).trim().equals("RED"))
-                colorChosen = Color.RED;
-                System.out.println("COLOR IS NOW RED");
         }
 
     }
