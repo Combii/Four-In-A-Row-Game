@@ -1,6 +1,7 @@
 package BusinessLogic.Client;
 
 
+import aPresentation.FourInARowGameController;
 import aPresentation.LoginController;
 import javafx.scene.paint.Color;
 
@@ -63,7 +64,10 @@ public class ClientListener implements Runnable{
                 colorChosen = Color.BLUE;
             }
         } else if(protocol.equals("CIRCLESELECTED")) {
-            String mes  = message.substring(message.indexOf(':')+1).trim();
+            String column = message.substring(message.indexOf(':')+1, message.indexOf(',')).trim();
+            //String color = message.substring(message.indexOf(',')+1).trim();
+
+            FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.RED);
             
         }
 

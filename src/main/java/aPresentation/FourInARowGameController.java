@@ -20,7 +20,7 @@ import java.util.List;
 public class FourInARowGameController implements Initializable {
     public GridPane gridPane;
 
-    private FourInARowList fourInARowList;
+    public static FourInARowList fourInARowList;
     private Color color = ClientListener.colorChosen;
 
     @Override
