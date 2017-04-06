@@ -26,6 +26,7 @@ public class LoginController {
 
     @FXML
     public Text waitingForConnectionText;
+    public TextField usernameID;
 
     @FXML
     private TextField ipTextField;
@@ -80,7 +81,7 @@ public class LoginController {
                 }
             }
 
-            playerConnection.sendObject("CONNECTION: " + startedProgramTime + ", Test123");
+            playerConnection.sendObject("CONNECTION: " + startedProgramTime + ", " + usernameID.getText());
             waitForConnectionNotification.interrupt();
         });
         waitForConnection.start();
