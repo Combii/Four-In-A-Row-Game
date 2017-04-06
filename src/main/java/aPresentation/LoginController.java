@@ -28,25 +28,11 @@ public class LoginController {
 
     @FXML
     void startGameClicked(ActionEvent event) {
-        Thread waitForConnectionNotification = new Thread(() -> {
-            try {
-                while (true) {
-                    waitingForConnectionText.setText("Waiting for Connection");
-                    Thread.sleep(500);
-                    waitingForConnectionText.setText("Waiting for Connection.");
-                    Thread.sleep(500);
-                    waitingForConnectionText.setText("Waiting for Connection..");
-                    Thread.sleep(500);
-                    waitingForConnectionText.setText("Waiting for Connection...");
-                    Thread.sleep(500);
-                }
-            }
-            catch (InterruptedException ignored) {
-            }
-        });
-        waitForConnectionNotification.start();
 
-        Thread setupConnection = new Thread(() -> {
+
+
+        waitingForConnectionText.setText("Waiting for Connection");
+
         String ip = ipTextField.getText();
         int port = Integer.parseInt(portTextField.getText());
 
@@ -74,17 +60,15 @@ public class LoginController {
 
         playerConnection.sendObject("CONNECTION: " + startedProgramTime);
         clientListenerThread.interrupt();
-        waitForConnectionNotification.interrupt();
-        });
-        setupConnection.start();
 
+        changeStage("");
     }
 
     private void changeStage(String path){
         try {
-        Stage stage = (Stage) ipTextField.getScene().getWindow();
+        Stage stage = (Stage) waitingForConnectionText.getScene().getWindow();
         //load up OTHER FXML document
-        Parent root = FXMLLoader.load(getClass().getResource("FourInARowGame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FourInARowGame.fxml"));
         //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         stage.setScene(scene);
