@@ -2,8 +2,8 @@ package BusinessLogic.Client;
 
 
 import aPresentation.LoginController;
+import javafx.scene.paint.Color;
 
-import java.awt.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
@@ -16,7 +16,7 @@ public class ClientListener implements Runnable{
 
     ServerSocket socket;
 
-    private Color colorChosen = Color.BLUE;
+    public static Color colorChosen = Color.RED;
 
     private final int port;
 
@@ -57,7 +57,10 @@ public class ClientListener implements Runnable{
 
             if(LoginController.startedProgramTime > Long.parseLong(time)){
                colorChosen = Color.RED;
-                System.out.println("COLOR IS NOW RED");
+               System.out.println("COLOR IS NOW RED");
+            }
+            else{
+                colorChosen = Color.BLUE;
             }
         }
 

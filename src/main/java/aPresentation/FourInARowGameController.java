@@ -1,5 +1,6 @@
 package aPresentation;
 
+import BusinessLogic.Client.ClientListener;
 import BusinessLogic.TheGame.CirclePiece;
 import BusinessLogic.TheGame.FourInARowList;
 import javafx.fxml.Initializable;
@@ -19,7 +20,7 @@ public class FourInARowGameController implements Initializable {
     public GridPane gridPane;
 
     private FourInARowList fourInARowList;
-    private Color color = Color.BLUE;
+    private Color color = ClientListener.colorChosen;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
