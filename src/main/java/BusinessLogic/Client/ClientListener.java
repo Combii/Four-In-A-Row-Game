@@ -66,7 +66,7 @@ public class ClientListener implements Runnable{
         } else if(protocol.equals("CIRCLESELECTED")) {
             String column = message.substring(message.indexOf(':')+1).trim();
 
-            boolean winCheck = false;
+            boolean winCheck;
 
             if(colorChosen.equals(Color.RED))
                 winCheck = FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.BLUE);
@@ -76,7 +76,7 @@ public class ClientListener implements Runnable{
             if(winCheck)
                 LoginController.getController().stopGame("You Lost. Game Over");
             else
-            FourInARowGameController.waitForTurn = false;
+                FourInARowGameController.waitForTurn = false;
 
             Platform.runLater(() -> LoginController.getController().setGridPane(FourInARowGameController.fourInARowList));
         }

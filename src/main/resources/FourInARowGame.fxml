@@ -29,7 +29,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Text fx:id="wonGameText" layoutX="72.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0">
+      <Text fx:id="announcingText" layoutX="72.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
