@@ -22,12 +22,14 @@ import java.util.List;
  */
 public class FourInARowGameController implements Initializable {
     public GridPane gridPane;
-    public Text wonGameText;
+    public Text announcingText;
 
     public static FourInARowList fourInARowList;
     private Color color = ClientListener.colorChosen;
 
     public static boolean waitForTurn;
+    public static boolean gameOver = false;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -109,8 +111,13 @@ public class FourInARowGameController implements Initializable {
                     });
                     button.setText("Place");
 
-                    if(waitForTurn)
-                        button.setDisable(true);
+                    if(!gameOver) {
+                        if (waitForTurn) {
+                            button.setDisable(true);
+                            announcingText.setText("Your opponent's turn");
+                        } else
+                            announcingText.setText("It's your turn");
+                    }
 
                     gridPane.add(button, columnCounter, rowCounter);
 
@@ -125,10 +132,9 @@ public class FourInARowGameController implements Initializable {
 
     }
 
-
     public void stopGame(String winOrLostMessage){
-        wonGameText.setText(winOrLostMessage);
+        announcingText.setText(winOrLostMessage);
         waitForTurn = true;
+        gameOver = true;
     }
-
 }
