@@ -65,7 +65,6 @@ public class ClientListener implements Runnable{
             }
         } else if(protocol.equals("CIRCLESELECTED")) {
             String column = message.substring(message.indexOf(':')+1, message.indexOf(',')).trim();
-            //String color = message.substring(message.indexOf(',')+1).trim();
 
             if(colorChosen.equals(Color.RED))
             FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.BLUE);
