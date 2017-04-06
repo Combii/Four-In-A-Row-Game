@@ -34,5 +34,6 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Text>
+      <Text fx:id="usernameText" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>

@@ -80,7 +80,7 @@ public class LoginController {
                 }
             }
 
-            playerConnection.sendObject("CONNECTION: " + startedProgramTime);
+            playerConnection.sendObject("CONNECTION: " + startedProgramTime + ", Test123");
             waitForConnectionNotification.interrupt();
         });
         waitForConnection.start();

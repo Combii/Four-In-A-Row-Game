@@ -25,6 +25,7 @@ public class FourInARowGameController implements Initializable {
     public Text announcingText;
 
     public static FourInARowList fourInARowList;
+    public Text usernameText;
     private Color color = ClientListener.colorChosen;
 
     public static boolean waitForTurn;

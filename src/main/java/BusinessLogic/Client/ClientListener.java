@@ -54,7 +54,8 @@ public class ClientListener implements Runnable{
 
         if(protocol.equals("CONNECTION")){
             System.out.println("Connection established...");
-            String time = message.substring(message.indexOf(':')+1).trim();
+            String time = message.substring(message.indexOf(':')+1, message.indexOf(',')).trim();
+            String username = message.substring(message.indexOf(',')+1).trim();
 
             if(LoginController.startedProgramTime > Long.parseLong(time)){
                colorChosen = Color.RED;
@@ -64,6 +65,8 @@ public class ClientListener implements Runnable{
                 colorChosen = Color.BLUE;
             }
             Platform.runLater(() -> LoginController.getLoginController().changeStage());
+            Platform.runLater(() -> LoginController.getFourInARowGameController().usernameText.setText(username));
+
         } else if(protocol.equals("CIRCLESELECTED")) {
             String column = message.substring(message.indexOf(':')+1).trim();
 
