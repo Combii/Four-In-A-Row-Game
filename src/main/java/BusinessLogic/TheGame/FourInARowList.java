@@ -47,7 +47,7 @@ public class FourInARowList {
         return returnFourInARowList;
     }
 
-    public boolean setBrick(int column, Color color) {
+    public synchronized boolean setBrick(int column, Color color) {
 
         for(int row = fourInARowList.size()-1; row >= 0; row--){
             CirclePiece circlePiece = fourInARowList.get(row).get(column);
