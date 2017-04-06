@@ -62,6 +62,9 @@ public class ClientListener implements Runnable{
             else{
                 colorChosen = Color.BLUE;
             }
+        } else if(protocol.equals("CIRCLESELECTED")) {
+            String mes  = message.substring(message.indexOf(':')+1).trim();
+            
         }
 
 
