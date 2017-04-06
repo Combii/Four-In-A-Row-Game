@@ -78,16 +78,16 @@ public class LoginController {
         clientListenerThread.interrupt();
         waitForConnectionNotification.interrupt();
 
-        Platform.runLater(() -> changeStage("/FourInARowGame.fxml"));
+        Platform.runLater(() -> changeStage());
         });
         waitForConnection.start();
     }
 
-    private void changeStage(String path){
+    private void changeStage(){
         try {
         Stage stage = (Stage) waitingForConnectionText.getScene().getWindow();
         //load up OTHER FXML document
-        Parent root = FXMLLoader.load(getClass().getResource(path));
+        Parent root = FXMLLoader.load(getClass().getResource("/FourInARowGame.fxml"));
         //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         stage.setScene(scene);
