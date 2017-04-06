@@ -45,13 +45,14 @@ public class FourInARowList {
         return returnFourInARowList;
     }
 
-    public boolean setBrick(int column, Color color){
+    public boolean setBrick(int column, Color color) {
 
         for(int row = fourInARowList.size()-1; row >= 0; row--){
             CirclePiece circlePiece = fourInARowList.get(row).get(column);
 
             if(circlePiece.getColor().equals(Color.WHITE)){
                 circlePiece.setColor(color);
+
                 return checkIfFourInARow(row, column, color);
             }
         }

@@ -1,5 +1,7 @@
 package BusinessLogic.Client;
 
+import aPresentation.LoginController;
+
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.net.*;
@@ -13,8 +15,8 @@ public class PlayerConnection {
     private Socket socket;
 
 
-    public PlayerConnection(String ip, int port) throws IOException {
-        socket = new Socket("localhost",Integer.parseInt(ip));
+    public PlayerConnection() throws IOException {
+        socket = new Socket("localhost", Integer.parseInt(LoginController.ip));
     }
 
     public void sendObject(Object object) {

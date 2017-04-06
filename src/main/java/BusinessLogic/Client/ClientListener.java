@@ -1,7 +1,9 @@
 package BusinessLogic.Client;
 
 
+import aPresentation.FourInARowGameController;
 import aPresentation.LoginController;
+import javafx.application.Platform;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
@@ -62,7 +64,18 @@ public class ClientListener implements Runnable{
             else{
                 colorChosen = Color.BLUE;
             }
+        } else if(protocol.equals("CIRCLESELECTED")) {
+            String column = message.substring(message.indexOf(':')+1).trim();
+
+            if(colorChosen.equals(Color.RED))
+                FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.BLUE);
+            else
+                FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.RED);
+
+            Platform.runLater(() -> LoginController.getController().setGridPane(FourInARowGameController.fourInARowList));
         }
+
+
 
     }
 
