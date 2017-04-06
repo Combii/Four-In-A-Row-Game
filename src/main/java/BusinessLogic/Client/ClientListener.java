@@ -63,6 +63,7 @@ public class ClientListener implements Runnable{
             else{
                 colorChosen = Color.BLUE;
             }
+            Platform.runLater(() -> LoginController.getLoginController().changeStage());
         } else if(protocol.equals("CIRCLESELECTED")) {
             String column = message.substring(message.indexOf(':')+1).trim();
 
@@ -74,11 +75,11 @@ public class ClientListener implements Runnable{
                 winCheck = FourInARowGameController.fourInARowList.setBrick(Integer.parseInt(column), Color.RED);
 
             if(winCheck)
-                LoginController.getController().stopGame("You Lost. Game Over");
+                LoginController.getFourInARowGameController().stopGame("You Lost. Game Over");
             else
                 FourInARowGameController.waitForTurn = false;
 
-            Platform.runLater(() -> LoginController.getController().setGridPane(FourInARowGameController.fourInARowList));
+            Platform.runLater(() -> LoginController.getFourInARowGameController().setGridPane(FourInARowGameController.fourInARowList));
         }
 
 

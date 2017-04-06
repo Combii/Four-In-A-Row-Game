@@ -1,4 +1,5 @@
 import aPresentation.FourInARowGameController;
+import aPresentation.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +22,7 @@ public class RunProgram extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Start.fxml"));
+        LoginController.loader = loader;
         Parent root = loader.load();
 
         primaryStage.setTitle("Four In A Row");

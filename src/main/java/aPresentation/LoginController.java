@@ -21,7 +21,7 @@ public class LoginController {
     public static String ip;
     public static int port;
 
-    private static FXMLLoader loader;
+    public static FXMLLoader loader;
 
 
     @FXML
@@ -58,38 +58,35 @@ public class LoginController {
         waitForConnectionNotification.start();
 
         Thread waitForConnection = new Thread(() -> {
-        Thread clientListenerThread = new Thread(new ClientListener(port));
-        clientListenerThread.start();
+            Thread clientListenerThread = new Thread(new ClientListener(port));
+            clientListenerThread.start();
 
-        PlayerConnection playerConnection = null;
+            PlayerConnection playerConnection = null;
 
-        while(true) {
-            try {
-                playerConnection = new PlayerConnection();
-            } catch (IOException ignored) {
+            while (true) {
+                try {
+                    playerConnection = new PlayerConnection();
+                } catch (IOException ignored) {
+                }
+
+                if (playerConnection != null)
+                    break;
+
+                //Wait for 1 second
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
-            if(playerConnection != null)
-            break;
-
-            //Wait for 1 second
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        playerConnection.sendObject("CONNECTION: " + startedProgramTime);
-        clientListenerThread.interrupt();
-        waitForConnectionNotification.interrupt();
-
-        Platform.runLater(this::changeStage);
+            playerConnection.sendObject("CONNECTION: " + startedProgramTime);
+            waitForConnectionNotification.interrupt();
         });
         waitForConnection.start();
     }
 
-    private void changeStage(){
+    public void changeStage(){
         try {
             Stage stage = (Stage) waitingForConnectionText.getScene().getWindow();
             //load up OTHER FXML document
@@ -105,7 +102,12 @@ public class LoginController {
         }
     }
 
-    public static FourInARowGameController getController(){
+
+    public static FourInARowGameController getFourInARowGameController(){
+        return loader.getController();
+    }
+
+    public static LoginController getLoginController(){
         return loader.getController();
     }
 
