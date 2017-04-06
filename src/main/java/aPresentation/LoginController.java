@@ -2,6 +2,7 @@ package aPresentation;
 
 import BusinessLogic.Client.ClientListener;
 import BusinessLogic.Client.PlayerConnection;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,15 +28,30 @@ public class LoginController {
     private TextField portTextField;
 
     @FXML
-    void startGameClicked(ActionEvent event) {
-
-
-
-        waitingForConnectionText.setText("Waiting for Connection");
+    void startGameClicked(ActionEvent event) throws InterruptedException {
 
         String ip = ipTextField.getText();
         int port = Integer.parseInt(portTextField.getText());
 
+        Thread waitForConnectionNotification = new Thread(() -> {
+            try {
+                while (true) {
+                    waitingForConnectionText.setText("Waiting for Connection");
+                    Thread.sleep(500);
+                    waitingForConnectionText.setText("Waiting for Connection.");
+                    Thread.sleep(500);
+                    waitingForConnectionText.setText("Waiting for Connection..");
+                    Thread.sleep(500);
+                    waitingForConnectionText.setText("Waiting for Connection...");
+                    Thread.sleep(500);
+                }
+            }
+            catch (InterruptedException ignored) {
+            }
+        });
+        waitForConnectionNotification.start();
+
+        Thread waitForConnection = new Thread(() -> {
         Thread clientListenerThread = new Thread(new ClientListener(port));
         clientListenerThread.start();
 
@@ -60,15 +76,18 @@ public class LoginController {
 
         playerConnection.sendObject("CONNECTION: " + startedProgramTime);
         clientListenerThread.interrupt();
+        waitForConnectionNotification.interrupt();
 
-        changeStage("");
+        Platform.runLater(() -> changeStage("/FourInARowGame.fxml"));
+        });
+        waitForConnection.start();
     }
 
     private void changeStage(String path){
         try {
         Stage stage = (Stage) waitingForConnectionText.getScene().getWindow();
         //load up OTHER FXML document
-        Parent root = FXMLLoader.load(getClass().getResource("/FourInARowGame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(path));
         //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         stage.setScene(scene);
