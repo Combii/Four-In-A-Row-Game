@@ -57,6 +57,7 @@ public class ClientListener implements Runnable{
 
             if(LoginController.startedProgramTime < Long.parseLong(time)){
                colorChosen = Color.RED;
+                System.out.println("COLOR IS NOW RED");
             }
         }
 
