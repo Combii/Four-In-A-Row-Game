@@ -21,7 +21,7 @@ public class RunProgram extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/Start.fxml"));
         Parent root = loader.load();
 
         primaryStage.setTitle("Chat Program");

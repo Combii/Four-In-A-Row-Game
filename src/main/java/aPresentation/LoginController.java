@@ -2,6 +2,7 @@ package aPresentation;
 
 import BusinessLogic.Client.ClientListener;
 import BusinessLogic.Client.PlayerConnection;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +28,11 @@ public class LoginController {
     private TextField portTextField;
 
     @FXML
-    void startGameClicked(ActionEvent event) {
+    void startGameClicked(ActionEvent event) throws InterruptedException {
+
+        String ip = ipTextField.getText();
+        int port = Integer.parseInt(portTextField.getText());
+
         Thread waitForConnectionNotification = new Thread(() -> {
             try {
                 while (true) {
@@ -46,10 +51,7 @@ public class LoginController {
         });
         waitForConnectionNotification.start();
 
-        Thread setupConnection = new Thread(() -> {
-        String ip = ipTextField.getText();
-        int port = Integer.parseInt(portTextField.getText());
-
+        Thread waitForConnection = new Thread(() -> {
         Thread clientListenerThread = new Thread(new ClientListener(port));
         clientListenerThread.start();
 
@@ -75,16 +77,17 @@ public class LoginController {
         playerConnection.sendObject("CONNECTION: " + startedProgramTime);
         clientListenerThread.interrupt();
         waitForConnectionNotification.interrupt();
-        });
-        setupConnection.start();
 
+        Platform.runLater(() -> changeStage("/FourInARowGame.fxml"));
+        });
+        waitForConnection.start();
     }
 
     private void changeStage(String path){
         try {
-        Stage stage = (Stage) ipTextField.getScene().getWindow();
+        Stage stage = (Stage) waitingForConnectionText.getScene().getWindow();
         //load up OTHER FXML document
-        Parent root = FXMLLoader.load(getClass().getResource("FourInARowGame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(path));
         //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         stage.setScene(scene);
